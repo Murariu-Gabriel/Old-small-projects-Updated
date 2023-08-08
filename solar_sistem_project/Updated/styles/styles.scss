@@ -1,109 +1,106 @@
 
 
+
 body{
-    
     background-image: url("../images/galaxy.gif") ;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    header {
-        text-align: center;
-        padding: 2rem 1rem;
+header {
+    text-align: center;
+    padding: 2rem 1rem;
 
-        h1{
-            color: white
-        }
-
-        .clickables{
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            // maybe for higher viewport
-            // justify-content: space-between;
-
-            input{
-               
-            }
-
-            button{
-                
-            }
-        }
+    h1{
+        color: white
     }
 
-
-    main{
+    .clickables{
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
 
-        .flex-container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem;
-
-
-            // for a bigger viewport
-            // justify-content: space-between;
-            img{
-
-                min-width: 100px;
-                max-width: 200px;
-
-            }
-
-            .description{
-                background-color: rgba(240,240,240, 0.4);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border-radius: 4px;
-                max-width: 50%;
-                color: white;
-                padding: 0 1rem;
-                max-width: 100%;
-
-                p{
-                    
-                    &:last-of-type{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: rgba(240,240,240, 0.6);
-                        width: 80px;
-                        height: 80px;
-                        border-radius: 50%;
-                    }
-
-
-                }
-            }        
+        input, select, button{
+            border-radius: 4px;
+            height: 2rem;
+            box-sizing: border-box;
+            border: none;
         }
-    }
 
+       button{
+        background-color: rgba(255, 255, 255, 0.4);;
+        color: white;
+       }
+    }
 }
 
 
+main{
+    margin: 0 2rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
 
-// description.style.background = "rgba(240,240,240, 0.4)"
-// flexContainer.style.alignItems = "center"
-// flexContainer.style.justifyContent = "space-around"
-// p2.textAlign = "center"
-// p2.style.background = "rgba(240,240,240, 0.6)"
-// p2.style.borderRadius = "50%"
+    .flex-container{
+        display: flex;
+        flex-direction: column;
+        
+        align-items: center;
+        gap: 1rem;
+
+        img{
+            padding: 1rem;
+            min-width: 100px;
+            max-width: 200px;
+
+        }
+
+        .description{
+            background-color: rgba(240,240,240, 0.4);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 4px;
+            max-width: 50%;
+            color: white;
+            padding: 0 1rem;
+            max-width: 100%;
+            margin: 2rem;
+
+            p{
+                
+                &:last-of-type{
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    background: rgba(240,240,240, 0.6);
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+
+                } 
+            }  
+        }        
+
+        .show{
+            display: flex;
+        }
+    }
+}
 
 
+@media only screen and (min-width: 750px) {
+    main{
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .flex-container{
+            flex-direction: row;
+           
+        }
+    }
+}
 
 
-
-
-// flexContainer.style.display = "flex"
-// flexContainer.style.justifyContent = "center"
-// flexContainer.style.padding = "30px 150px"
-// flexContainer.style.background = "rgba(240,240,240, 0.2)"
-// flexContainer.style.maxWidth = "900px"
-// main.style.justifyContent = "center"
-
-
-// p2.style.textAlign = "center"
-// img.style.height = "250px"
+ 
