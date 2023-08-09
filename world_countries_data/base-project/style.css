@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.countries {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countries h2 {
+    margin: 0;
+    font-size: 4rem;
+    color: rgb(241, 162, 14);
+}
+
+.wrapper{
+    text-align: center;
+}
+
+.population, .languages {
+    border-style: none;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    background-color: orange;
+    cursor: pointer;
+    padding: 8px 30px;
+}
+
+.languages:hover {
+    background-color: rgb(194, 129, 8);
+}
+
+.population:hover {
+    background-color: rgb(194, 129, 8);
+}
+
+.graphs {
+    display: flex;
+    justify-content: center;
+}
+
+ul li {
+    display: flex;
+    justify-content: flex-start ;
+    align-items: center;
+    list-style: none;
+    padding: 3px;
+    margin: 0;
+}
+
+
+
+.colored-line {
+    background-color: orange;
+    padding: 0.8rem 20rem;
+    margin: 0 0.2rem;
+
+}
+
+.colored-line1 {
+    background-color: orange;
+    padding: 0.8rem 9rem;
+    margin: 0 2rem;
+}
+
+.colored-line2 {
+    background-color: orange;
+    padding: 0.8rem 8rem;
+    margin: 0 2rem;
+}
+
+.colored-line3 {
+    background-color: orange;
+    padding: 0.8rem 7rem;
+    margin: 0 2rem;
+}
+
+.colored-line4 {
+    background-color: orange;
+    padding: 0.8rem 6rem;
+    margin: 0 2rem;
+}
+
+.colored-line5{
+    background-color: orange;
+    padding: 0.8rem 5rem;
+    margin: 0 2rem;
+}
+
+.colored-line6 {
+    background-color: orange;
+    padding: 0.8rem 4rem;
+    margin: 0 2rem;
+}
+
+.colored-line7 {
+    background-color: orange;
+    padding: 0.8rem 3rem;
+    margin: 0 2rem;
+}
+
+.colored-line8 {
+    background-color: orange;
+    padding: 0.8rem 2rem;
+    margin: 0 2rem;
+}
+
+.colored-line9 {
+    background-color: orange;
+    padding: 0.8rem 1rem;
+    margin: 0 2rem;
+}
+
+.colored-line10 {
+    background-color: orange;
+    padding: 0.8rem 0.8rem;
+    margin: 0 2rem;
+}
+
+
+
