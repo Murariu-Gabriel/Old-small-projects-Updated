@@ -77,20 +77,36 @@ body{
             .graph-wrapper{
 
                 display: flex;
-                gap: 1rem;
+                gap: 2rem;
+
 
                 ul{
+
                     align-items: center;
                     list-style: none;
-                    padding: 3px;
+                    padding: none;
                     margin: 0;
+                    
     
                     li{
                         display: flex;
-                        gap: 2rem;
                         text-align: start;
+                        margin-top: 0.5rem;
+                    }
+                    
+                    
+                }
+
+                
+                 .bars{
+                     width: 300px;
+                    .bar{
+                        background-color: $orange;
+                        height: 25px;
+                        // width: 100px;
                     }
                 }
+               
             }
         }
     }

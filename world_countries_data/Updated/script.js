@@ -5,7 +5,10 @@ const buttonLanguages = document.getElementById("languages");
 const list = document.getElementById("list")
 const secondList = document.querySelector("#secondList")
 const coloredLine = document.getElementById("colored-line")
+const bars = document.getElementById("bars")
 
+
+// A fetch for practicing and to display total countries
 
 const fetchData = async() => {
   try {
@@ -21,6 +24,9 @@ const fetchData = async() => {
 
 fetchData()
 
+
+// Shared functionality for the buttons
+
 const sortBy = (array, value) => {
   const sorted = array.toSorted((a, b) => {
     return b[value] - a[value]
@@ -29,12 +35,23 @@ const sortBy = (array, value) => {
   return sorted
 }
 
-
-const listElement = (element) => {
+const listElement = (element, listClass) => {
   const listEl = document.createElement("li")
-  listEl.classList.add("listEl")
-  listEl.innerHTML = `<span>${element}</span>`
-  //listEl.innerHTML = `${country} <p class="colored-line${count}" id="colored-line"></p> ${population}`
+  
+  const ifAddedClass = listClass ? listClass : "listEl"
+  const noContent = listClass ? "" : element
+
+  listEl.classList.add(ifAddedClass)
+  listEl.innerHTML = `<span>${noContent}</span>`
+              
+  const procent = (element / 8015827856) * 100
+  const finalProcent = procent.toString().slice(0,4)
+  const stringNum = element.toString()
+
+
+  const ifNumberToHigh = stringNum.length > 2 ? `${finalProcent}%` : `${element}%`
+  listEl.style.width = listClass ? ifNumberToHigh : "0%"
+
   return listEl
 }
 
@@ -47,25 +64,30 @@ const addCertainNumberOfElements = (array, number, element, count) => {
 
     list.appendChild(listElement(fistElement))
     secondList.appendChild(listElement(secondElement))
+    bars.appendChild(listElement(secondElement, "bar"))
   })
+}
+
+
+const deleteContentFromLists = () => {
+   list.innerHTML = ""
+   secondList.innerHTML = ""
+   bars.innerHTML = ""
 }
 
 
 buttonPopulation.addEventListener("click", () => {
   info.innerText = "10 Most populated countries in the world"
-  list.innerHTML = ""
-  secondList.innerHTML = ""
 
-  //wordlPop.innerHTML = `World <p class="colored-line"></p> 8,015,827,856`
-  const wordlPop = document.createElement("li")
-  wordlPop.innerHTML = `World`
-  list.appendChild(listElement("World"))
-  secondList.appendChild(listElement("8,015,827,856"))
-
+  deleteContentFromLists()
 
   addCertainNumberOfElements(countries_data, 10, "population", "name")
 });
 
+
+
+
+// Functionality for the languages button
 
 const mostSpokenLanguages = (array) => {
   const langs = array.map((element) => element.languages)
@@ -78,7 +100,7 @@ const mostSpokenLanguages = (array) => {
 
   const counts = [...allLangSet].reduce((accumulator, language) => {
     const filteredLang = allLangs.filter((lng) => lng === language)
-    return accumulator.concat({ lang: language, count: filteredLang.length })
+    return accumulator.concat({ count: filteredLang.length, lang: language})
   }, [])
 
   const sortedLangs = sortBy(counts, "count")
@@ -89,15 +111,10 @@ const mostSpokenLanguages = (array) => {
 
 buttonLanguages.addEventListener("click", () => {
   info.innerText = "10 Most spoken languages in the world"
-  list.innerHTML = ""
-  secondList.innerHTML = ""
 
-  addCertainNumberOfElements(
-    mostSpokenLanguages(countries_data),
-    10,
-    "lang",
-    "count"
-  )
+  deleteContentFromLists()
+
+  addCertainNumberOfElements(mostSpokenLanguages(countries_data), 10, "count", "lang" )
 });
 
 

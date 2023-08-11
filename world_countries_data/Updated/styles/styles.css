@@ -59,16 +59,23 @@ body {
 }
 .main-wrapper .wrapper .graphs .graph-wrapper {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 .main-wrapper .wrapper .graphs .graph-wrapper ul {
   align-items: center;
   list-style: none;
-  padding: 3px;
+  padding: none;
   margin: 0;
 }
 .main-wrapper .wrapper .graphs .graph-wrapper ul li {
   display: flex;
-  gap: 2rem;
   text-align: start;
+  margin-top: 0.5rem;
+}
+.main-wrapper .wrapper .graphs .graph-wrapper .bars {
+  width: 300px;
+}
+.main-wrapper .wrapper .graphs .graph-wrapper .bars .bar {
+  background-color: rgb(241, 162, 14);
+  height: 25px;
 }/*# sourceMappingURL=styles.css.map */
