@@ -50,6 +50,7 @@ const listElement = (element, listClass) => {
 
 
   const ifNumberToHigh = stringNum.length > 2 ? `${finalProcent}%` : `${element}%`
+
   listEl.style.width = listClass ? ifNumberToHigh : "0%"
 
   return listEl
