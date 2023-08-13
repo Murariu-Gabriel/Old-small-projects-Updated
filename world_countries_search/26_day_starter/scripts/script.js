@@ -6,7 +6,10 @@ const search = document.getElementById("search");
 const countryContainer = document.getElementById("country-container");
 const firstBox = document.getElementById("first-box");
 const afterInput = document.getElementById("after-input");
+const totalCountries = document.querySelector("p span")
 
+
+totalCountries.textContent = countries.length
 
 
 // Loading countries
@@ -18,15 +21,15 @@ const loadCountries = (array) => {
          const div = document.createElement("div")
          div.classList.add("country")
          div.innerHTML = `
-            <img class="image" src="./images/map_image.jpg" alt=""><p class="country-text">${country}</p>
+           <p class="country-text">${country}</p>
         `
+        // div.style.background = ""
          countryContainer.appendChild(div)
     })
     
 }
 
 loadCountries(countries)
-
 
 
 
@@ -53,27 +56,15 @@ buttons.forEach( button => {
 
 
 
-
-
 // Search functionality
 
-// search.addEventListener("keyup", (e) => {
-//     const search = e.target.value.toLowerCase()
-//     const filteredCountries = countries.filter((country) => {
-//         const firstWord = country.toLowerCase().startsWith(search)
-//         console.log(firstWord)
-
-//         return firstWord
-//     })
-//     loadCountries(filteredCountries)
-// })
-
-
-// here the next step is to think how do I want my buttons to work
-
-// Do I want to re-render when I click based on the current input or to update after writing something
-
-// same with the sorting button
+const updateTotalNumber = (e, filteredCountries) => {
+    if (e.target.value.length != 0) {
+      afterInput.innerHTML = `Countries with <span class="sub-input1">${e.target.value}</span> are <span class="sub-input2">${filteredCountries.length}</span>`
+    } else {
+      afterInput.innerHTML = ""
+    }
+}
 
 search.addEventListener("keyup", (e) => {
     const search = e.target.value.toLowerCase();
@@ -81,18 +72,22 @@ search.addEventListener("keyup", (e) => {
     const currentButton = document.body.querySelector(".special")
     console.log(currentButton)
 
-    const filteredCountries = countries.filter(country => {
-        return country.toLowerCase().includes(search)
-  })
+    if(currentButton?.id === "starting-word" && currentButton !== null){
+      const filteredCountries = countries.filter((country) => {
+        const firstWord = country.toLowerCase().startsWith(search)
 
-  loadCountries(filteredCountries)
-  
-  if(e.target.value.length != 0){
-  
-    afterInput.innerHTML = `Countries with <p class="sub-input1">${e.target.value}</p> are <p class="sub-input2">${filteredCountries.length}</p>`
+        return firstWord
+      })
+
+      loadCountries(filteredCountries)
+      updateTotalNumber(e, filteredCountries)
+
     } else {
-        afterInput.innerHTML = ""
+      const filteredCountries = countries.filter(country => {
+          return country.toLowerCase().includes(search)
+    })
+
+      loadCountries(filteredCountries)
+        updateTotalNumber(e, filteredCountries)
     }
 })
-
-
