@@ -1,8 +1,17 @@
-const technologies = document.querySelector(".technologies-animation span")
+
+
+const technologies = document.querySelector(".technologies")
 const attributes = document.querySelector(".attributes")
 
 const technologiesString = ["html", "css", "javascript", "react", "git" ]
-const attributesString = ["hard worker", "likes to workout", "ex artist", "runner"]
+const colors = [
+  "rgb(255, 136, 0)",
+  "rgb(0, 119, 255)",
+  "rgb(255, 225, 0)",
+  "rgb(69, 19, 188)",
+  "rgb(32, 101, 175)",
+]
+const attributesString = ["Not afraid of Hard Work", "Likes to workout", "Ex artist", "Runner"]
 
 
 const generateWords = (array, parent, interval) => {
@@ -11,13 +20,19 @@ const generateWords = (array, parent, interval) => {
 
     setInterval(() => {
       console.log("da", counter)
-      counter++
-
+      
       parent.textContent = array[counter]
-
-      if (counter === array.length - 1) {
-        counter = 0
+        console.log(parent.className)
+      if (parent.className === "technologies") {
+        console.log("asdasd")
+        parent.style.color = colors[counter]
       }
+      
+      if (counter === array.length -1 ) {
+          counter = 0
+        } else {
+            counter++
+        }
     }, interval)
 }
 

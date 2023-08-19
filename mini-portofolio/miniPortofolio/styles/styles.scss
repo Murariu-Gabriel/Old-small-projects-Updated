@@ -2,6 +2,32 @@
     box-sizing: border-box;
 }
 
+
+@keyframes leftSlide {
+    0%{
+        opacity: 0;
+        left: 0;
+    }
+
+    100%{
+        opacity: 1;
+        left: 70px;
+    }
+}
+
+@keyframes transition {
+    0%{
+         opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+
 body{
     padding: 2rem 4rem ;
     
@@ -16,9 +42,16 @@ header{
 
 main{
     h2{
+        position: relative;
         margin: 0;
-        padding: 2rem 0 2rem 1rem;
+        padding: 3rem 2rem;
         background-color: rgb(127, 204, 255);
+        
+        .attributes {
+            position: absolute;
+            animation: 1s ease-in 1s infinite leftSlide;
+            transform: translateY(-50%);
+        }
     }
 
     ul{
@@ -58,5 +91,14 @@ main{
             }
         }
     }
+
+
+    .technologies{
+        font-size: 2rem;
+        text-transform: uppercase;
+        animation: 1s ease-in 1s infinite transition;
+        color: rgb(255, 136, 0);
+    }
+    
 }
 
