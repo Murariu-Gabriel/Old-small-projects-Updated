@@ -39,20 +39,3 @@ const generateWords = (array, parent, interval) => {
 
 generateWords(technologiesString, technologies, 1000)
 generateWords(attributesString, attributes, 1000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

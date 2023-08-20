@@ -1,0 +1,140 @@
+body{
+    background-color: #eee;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.input{
+    height: 2.5rem;
+    border: 2px solid rgb(220, 155, 138);;
+    width: 10rem;
+    font-size: 1.3rem;
+}
+
+input::placeholder{
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+    color: rgb(181, 186, 186);
+}
+
+.add-player{
+    border-style: none;
+    color: white;
+    height: 2.72rem;
+    width: 8rem;
+    font-size: 1.3rem;
+    background-color: rgb(220, 155, 138);
+}
+
+.add-player:hover{
+    background-color: rgb(173, 122, 109);;
+}
+
+
+.after-input{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.h-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+/*
+NU UITA CA AICI TREBUIE SA SCHIMBI JUSTIFY CONTENT SI SA TE FOLOSESTI DE PADDING
+*/
+.player-info {
+    padding: 0;;
+    margin: 0;
+    background-color: rgb(220, 155, 138);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 810px;
+    height: 5rem;
+}
+
+.container-info{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    width: 200px;
+}
+
+.player-name {
+    
+}
+
+.info1{
+    
+    font-size: 1.3rem;
+}
+
+.info2{
+    font-size: 1.3rem;
+    
+}
+
+.player-name, .date{
+    margin: 0;
+}
+
+.delete, .add-score, .take-score {
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50%;
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+.buttons {
+    text-align: end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
