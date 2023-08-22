@@ -114,6 +114,10 @@ NU UITA CA AICI TREBUIE SA SCHIMBI JUSTIFY CONTENT SI SA TE FOLOSESTI DE PADDING
     width: 3.5rem;
 }
 
+.delete svg {
+    pointer-events: none;
+}
+
 .button:hover{
     cursor: pointer;
     background-color: aliceblue;

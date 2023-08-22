@@ -1,8 +1,3 @@
-
-    const firstName = document.getElementById("first-name");
-    const lastName = document.getElementById("last-name");
-    const country = document.getElementById("country");
-    const playerScore = document.getElementById("player-score");
     const leaderboard = document.getElementById("leaderboard-container")
     const addPlayer = document.getElementById("add-player")
     const afterInput = document.getElementById("after-input");
@@ -40,7 +35,39 @@
     return currentTime
     }
 
+
     // Remember, when deleting an item you also have to delete the event listeners
+
+    const getAllElements = (parent, type) => {
+        const elements = parent.querySelectorAll(type)
+
+        return elements
+    }
+
+    const deleteElement = (e) => {
+        const parent = e.target.parentNode.parentNode
+
+        console.log(parent)
+
+        parent.remove()
+    }
+
+
+    // You need to find a way to not allow it go under or more than a ertain number
+
+    const changeScore = (e, scoreCount, operation) => {
+        const scoreContainer = e.parentNode.parentNode.querySelector(".score")
+        const score = parseInt(scoreContainer.innerText) 
+
+        const operators = {
+            "+" : (a, b) => a + b,
+            "-" : (a, b) => a - b
+        }
+
+        const func = operators[operation]
+        
+        scoreContainer.innerText = func(score, scoreCount)
+    }
 
 
     // Here you have to rethink the element structure and write it in the html string format 
@@ -65,6 +92,16 @@
                 <button class="take-score button">-5</button>
             </div>
         `
+
+        const buttons = getAllElements(element, "button")
+
+        console.log(buttons)
+
+        buttons[0].addEventListener("click", deleteElement)
+        buttons[1].addEventListener("click", e => changeScore(e.target, 5, "+"))
+        buttons[2].addEventListener("click", e => changeScore(e.target, 5, "-"))
+
+        return element
     }
 
 
@@ -72,21 +109,56 @@
     inputContainer.addEventListener("submit", (e) =>{
         e.preventDefault();
 
-        const data = new FormData(e.target)
-         const player = Object.fromEntries(data)
+        const data = new FormData(e.currentTarget)
+        const player = Object.fromEntries(data)
+
+        const {first_name, last_name, country, player_score} = player
 
         console.log(player)
 
+
+
         // This part needs to be changed
-        if(firstName.value.length && lastName.value.length && country.value.length && playerScore.value.length != 0){
+
+        // Somehow maybe you can use the dynamic object search method you learn to display errors and type of input that needs introduced
+        if(first_name.length && last_name.length && country.length && player_score.length != 0){
             afterInput.innerText = "" 
+
         } else {
+
             afterInput.innerText = "enter something"
             return;
         }
 
         // first box with player info
        
+
+
+        leaderboard.appendChild(createElement(first_name, last_name, country, player_score, getTime()))
+
+       
+
+        // deleteButton.addEventListener('click', () => {
+        //     leaderboard.removeChild(playerInfo)
+        // })
+
+        // addScoreButton.addEventListener('click', () => {
+        //     score.innerText = scoreVariable += 5
+          
+        // })
+
+        // minusScoreButton.addEventListener('click', () => {
+        //     score.innerText = scoreVariable -= 5
+          
+        // })
+        
+    })
+
+  
+
+
+
+
 
         // const playerInfo = document.createElement('div')
         // playerInfo.classList.add("player-info")
@@ -156,29 +228,11 @@
 
         
 
-       
 
-        leaderboard.appendChild(playerInfo)
 
-       
 
-        deleteButton.addEventListener('click', () => {
-            leaderboard.removeChild(playerInfo)
-        })
 
-        addScoreButton.addEventListener('click', () => {
-            score.innerText = scoreVariable += 5
-          
-        })
 
-        minusScoreButton.addEventListener('click', () => {
-            score.innerText = scoreVariable -= 5
-          
-        })
-        
-    })
-
-  
 
 
 
