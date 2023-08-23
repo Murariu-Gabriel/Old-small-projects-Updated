@@ -1,283 +1,175 @@
-    const leaderboard = document.getElementById("leaderboard-container")
-    const addPlayer = document.getElementById("add-player")
-    const afterInput = document.getElementById("after-input");
-    const inputContainer = document.getElementById("input-container")
+const leaderboard = document.getElementById("leaderboard-container")
+const afterInput = document.getElementById("after-input");
+const inputContainer = document.getElementById("input-container")
 
 
-    const getTime = () => {
+const getTime = () => {
 
-    const time = new Date()
-    const date = time.getDate()
-    const year = time.getFullYear()
-    const hour = time.getHours()
-    const minute = time.getMinutes()
-    const month = time.getMonth()
-    const monthString = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ]
+const time = new Date()
+const date = time.getDate()
+const year = time.getFullYear()
+const hour = time.getHours()
+const minute = time.getMinutes()
+const month = time.getMonth()
+const monthString = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+]
 
-    const currentMonth = monthString[month].slice(0, 3)
+const currentMonth = monthString[month].slice(0, 3)
 
-    const currentTime = `${currentMonth} ${date} ${year} ${
-        hour < 10 ? "0" + hour : hour
-    }:${minute < 10 ? "0" + minute : minute}`
-    return currentTime
+const currentTime = `${currentMonth} ${date} ${year} ${
+    hour < 10 ? "0" + hour : hour
+}:${minute < 10 ? "0" + minute : minute}`
+return currentTime
+}
+
+
+const getAllElements = (parent, type) => {
+    const elements = parent.querySelectorAll(type)
+
+    return elements
+}
+
+const deleteEvents = (children) => {
+  for (const child of children) {
+    const clone = child.cloneNode(true)
+    child.parentNode.replaceChild(clone, child)
+  }
+}
+
+
+const deleteElement = (e, elementsWithEvents) => {
+    const parent = e.target.parentNode.parentNode
+
+    deleteEvents(elementsWithEvents)
+    parent.remove()
+}
+
+
+
+const changeScore = (e, scoreCount, operation) => {
+    const scoreContainer = e.parentNode.parentNode.querySelector(".score")
+    const score = parseInt(scoreContainer.innerText) 
+
+    const operators = {
+        "+" : (a, b) => a + b,
+        "-" : (a, b) => a - b
     }
 
+    const func = operators[operation]
+    const currentScore = func(score, scoreCount)
 
-    // Remember, when deleting an item you also have to delete the event listeners
+    if(currentScore <= 0){
 
-    const getAllElements = (parent, type) => {
-        const elements = parent.querySelectorAll(type)
-
-        return elements
+        scoreContainer.innerText = 0
+    } else {
+       scoreContainer.innerText = currentScore
     }
 
-    const deleteElement = (e) => {
-        const parent = e.target.parentNode.parentNode
-
-        console.log(parent)
-
-        parent.remove()
-    }
+    sortNodes(leaderboard, leaderboard.children)
+    
+}
 
 
-    // You need to find a way to not allow it go under or more than a ertain number
 
-    const changeScore = (e, scoreCount, operation) => {
-        const scoreContainer = e.parentNode.parentNode.querySelector(".score")
-        const score = parseInt(scoreContainer.innerText) 
+const createElement = (firstName, lastName, country, playerScore, date) => {
+    const element = document.createElement("li")
+    element.classList.add("player-info")
 
-        const operators = {
-            "+" : (a, b) => a + b,
-            "-" : (a, b) => a - b
-        }
+    element.innerHTML = `
+        <div class="container-info">
+            <span class="player-name">${firstName} ${lastName}</span>
+            <span class="date">${date}</span>
+        </div>
 
-        const func = operators[operation]
+        <span class="country info1">${country}</span>
+        <span class="score info2">${playerScore}</span>
         
-        scoreContainer.innerText = func(score, scoreCount)
-    }
+        <div class="buttons">
+            <button class="delete button">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-200 0H360v-72h304v72z"></path></svg>
+            </button>
+            <button class="add-score button">+5</button>
+            <button class="take-score button">-5</button>
+        </div>
+    `
 
+    const buttons = getAllElements(element, "button")
 
-    // Here you have to rethink the element structure and write it in the html string format 
-    const createElement = (firstName, lastName, country, playerScore, date) => {
-        const element = document.createElement("li")
-        element.classList.add("player-info")
+    console.log(buttons)
 
-        element.innerHTML = `
-            <div class="container-info">
-                <span class="player-name">${firstName} ${lastName}</span>
-                <span class="date">${date}</span>
-            </div>
+    buttons[0].addEventListener("click", e => deleteElement(e, buttons))
+    buttons[1].addEventListener("click", e => changeScore(e.target, 5, "+"))
+    buttons[2].addEventListener("click", e => changeScore(e.target, 5, "-"))
 
-            <span class="country info1">${country}</span>
-            <span class="score info2">${playerScore}</span>
-            
-            <div class="buttons">
-                <button class="delete button">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-200 0H360v-72h304v72z"></path></svg>
-                </button>
-                <button class="add-score button">+5</button>
-                <button class="take-score button">-5</button>
-            </div>
-        `
-
-        const buttons = getAllElements(element, "button")
-
-        console.log(buttons)
-
-        buttons[0].addEventListener("click", deleteElement)
-        buttons[1].addEventListener("click", e => changeScore(e.target, 5, "+"))
-        buttons[2].addEventListener("click", e => changeScore(e.target, 5, "-"))
-
-        return element
-    }
+    return element
+}
 
 
 
-    inputContainer.addEventListener("submit", (e) =>{
-        e.preventDefault();
+inputContainer.addEventListener("submit", (e) =>{
+    e.preventDefault();
 
-        const data = new FormData(e.currentTarget)
-        const player = Object.fromEntries(data)
+    const data = new FormData(e.currentTarget)
+    const player = Object.fromEntries(data)
 
-        const {first_name, last_name, country, player_score} = player
+    const {first_name, last_name, country, player_score} = player
 
-        console.log(player)
-
-
-
-        // This part needs to be changed
-
-        // Somehow maybe you can use the dynamic object search method you learn to display errors and type of input that needs introduced
-        if(first_name.length && last_name.length && country.length && player_score.length != 0){
-            afterInput.innerText = "" 
-
-        } else {
-
-            afterInput.innerText = "enter something"
-            return;
-        }
-
-        // first box with player info
-       
+    console.log(player)
 
 
+    if(first_name.length && last_name.length && country.length && player_score.length != 0){
+
+        afterInput.innerText = "" 
         leaderboard.appendChild(createElement(first_name, last_name, country, player_score, getTime()))
 
-       
+        sortNodes(leaderboard, leaderboard.children)
+    } else {
 
-        // deleteButton.addEventListener('click', () => {
-        //     leaderboard.removeChild(playerInfo)
-        // })
+        afterInput.innerText = "All fields are required"
 
-        // addScoreButton.addEventListener('click', () => {
-        //     score.innerText = scoreVariable += 5
-          
-        // })
+    }  
 
-        // minusScoreButton.addEventListener('click', () => {
-        //     score.innerText = scoreVariable -= 5
-          
-        // })
-        
-    })
-
-  
+})
 
 
+const getScore = (parent) => {
+    const score = parseInt(parent.querySelector(".score").innerText) 
+    return score
+}
 
 
-
-        // const playerInfo = document.createElement('div')
-        // playerInfo.classList.add("player-info")
-
-        // const containerInfo = document.createElement('div')
-        // containerInfo.classList.add("container-info")
-
-
-
-        // const playerName = document.createElement("p")
-        // playerName.classList.add("player-name")
-        // playerName.innerText = `${firstName.value} ${lastName.value}`
-        // containerInfo.appendChild(playerName)
-
-        // const date = document.createElement("p")
-        // date.classList.add("date")
-        // date.innerText = `${getTime()}`
-        // containerInfo.appendChild(date)
-
-
-
-
-        // playerInfo.appendChild(containerInfo)
-
-        // //
-
-        // // the two pps without container
-        // const countryInfo = document.createElement("p")
-        // countryInfo.classList.add("country")
-        // countryInfo.classList.add("info1")
-        // countryInfo.innerText = `${country.value}`
-
-        // let scoreVariable = parseInt(playerScore.value);
-        // const score = document.createElement("p")
-        // score.classList.add("score")
-        // score.classList.add("info2")
-        // score.innerText = `${scoreVariable}`
-
-        // playerInfo.appendChild(countryInfo)
-        // playerInfo.appendChild(score)
-        // //
-
-        // // the BUTTONS
-
-        // const buttons = document.createElement("div")
-        // buttons.classList.add("buttons")
-
-        // const deleteButton = document.createElement("button")
-        // deleteButton.classList.add("delete")
-        // deleteButton.classList.add("button")
-        // deleteButton.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-200 0H360v-72h304v72z"></path></svg>`
-        // buttons.appendChild(deleteButton)
-
-        // const addScoreButton = document.createElement("button")
-        // addScoreButton.classList.add("add-score")
-        // addScoreButton.classList.add("button")
-        // addScoreButton.innerText = "+5"
-        // buttons.appendChild(addScoreButton)
-
-        // const minusScoreButton = document.createElement("button")
-        // minusScoreButton.classList.add("take-score")
-        // minusScoreButton.classList.add("button")
-        // minusScoreButton.innerText = "-5"
-        // buttons.appendChild(minusScoreButton)
-
-        // playerInfo.appendChild(buttons)
-
-        
-
-
-
-
-
-
-
-
-
-
-
-// ACEASTA ESTE PRIMA MEA INCERCARE DAR NU A MERS
-
-// function addStuff() {
-        
-//     const divEl = document.createElement("div")
-//     divEl.classList.add("player")
-//     divEl.innerHTML = `
-//     <div class="player-info">
-//         <div class="container-info">
-//             <p class="player-name">${firstName.value} ${lastName.value}</p>
-//             <p class="date">${getTime()}</p>
-//         </div>
-//         <p class="country info1">${country.value}</p>
-//         <p class="score info2" >${playerScore.value}</p>
-//         <div class="buttons">
-//             <button class="delete button" id="delete" ><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-200 0H360v-72h304v72z"></path></svg></button>
-//             <button class="add-score button" id="add-score" >-5</button>
-//             <button class="take-score button" id="take-score" >+5</button>
-//         </div>
-//     </div>
-//     `
-//     leaderboard.appendChild(divEl)
-
-//     const deleteButton = document.getElementById("delete")
-//     const addScoreButton = document.getElementById("add-score")
-//     const takeScoreButton = document.getElementById("take-score")
-//     const player = document.getElementsByClassName("player")
-
-//     deleteButton.addEventListener('click', () => {
-//     leaderboard.removeChild(player)
-//     })
+const sortNodes = (parent, nodes) => {
     
-// }  
+    const children = Array.from(nodes)
+    
+    console.log(children)
+    
+    const sortedChildren = children.toSorted((a, b) => getScore(b) - getScore(a))
+    
+    console.log(sortedChildren)
+    parent.innerHTML = ""
+
+    sortedChildren.forEach((el) => parent.appendChild(el)) // 
+
+}
 
 
 
+// when adding score the list elements are sorted
 
-
-
-
+    
 
 
 
