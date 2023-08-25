@@ -1,6 +1,15 @@
 const leaderboard = document.getElementById("leaderboard-container")
-const afterInput = document.getElementById("after-input");
+const messageContainer = document.getElementById("message-container");
 const inputContainer = document.getElementById("input-container")
+
+const getListItems = () => {
+  const storedProducts = localStorage.getItem("list-items")
+  const parsedProducts = JSON.parse(storedProducts)
+  const products = parsedProducts ? parsedProducts : {}
+
+  return products
+}
+
 
 
 const getTime = () => {
@@ -51,6 +60,8 @@ const deleteEvents = (children) => {
 
 const deleteElement = (e, elementsWithEvents) => {
     const parent = e.target.parentNode.parentNode
+
+    console.log("da?")
 
     deleteEvents(elementsWithEvents)
     parent.remove()
@@ -131,13 +142,17 @@ inputContainer.addEventListener("submit", (e) =>{
 
     if(first_name.length && last_name.length && country.length && player_score.length != 0){
 
-        afterInput.innerText = "" 
-        leaderboard.appendChild(createElement(first_name, last_name, country, player_score, getTime()))
+        const time = getTime()
+
+        messageContainer.innerText = "" 
+        leaderboard.appendChild(createElement(first_name, last_name, country, player_score, time))
+
+        updateListItems(first_name, [last_name, country, player_score, time])
 
         sortNodes(leaderboard, leaderboard.children)
     } else {
 
-        afterInput.innerText = "All fields are required"
+        messageContainer.innerText = "All fields are required"
 
     }  
 
@@ -167,11 +182,46 @@ const sortNodes = (parent, nodes) => {
 
 
 
-// when adding score the list elements are sorted
 
+const updateListItems = (item, value) => {
+  const listItems = getListItems()
+
+  const [last_name, country, player_score, time] = value
+
+    listItems[item] = {
+        name: item,
+        lastName: last_name,
+        country: country,
+        score: player_score,
+        date: time
+    }
+ 
     
+  const stringified = JSON.stringify(listItems)
+  localStorage.setItem("list-items", stringified)
+}
 
 
+const loadLeadearboar = () => {
+  const leaderboardItems = getListItems()
+
+  for (const item in leaderboardItems) {
+    const { name, lastName, country, score, date } = leaderboardItems[item]
+   
+    const element = createElement(name, lastName, country, score, date)
+
+    leaderboard.appendChild(element)
+  }
+}
+
+loadLeadearboar()
+// localStorage.clear()
+
+// Next
+
+// When the delete button is clicked we need to delete the item from local storage
+
+// When we change score the score has to be hanged in local storage also
 
 
 

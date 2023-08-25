@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eee;
+}
+
+.everything {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.everything .h-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.everything .h-container .title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+.everything .h-container .input-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+.everything .h-container .input-container button, .everything .h-container .input-container input {
+  flex: 1;
+  min-width: 150px;
+  height: 3rem;
+}
+.everything .h-container .input-container input {
+  border: 2px solid rgb(241, 202, 192);
+  font-size: 1.3rem;
+  width: 70%;
+  padding: 0 1rem;
+}
+.everything .h-container .input-container input::-moz-placeholder {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgb(181, 186, 186);
+}
+.everything .h-container .input-container input:-ms-input-placeholder {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgb(181, 186, 186);
+}
+.everything .h-container .input-container input::placeholder {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgb(181, 186, 186);
+}
+.everything .h-container .input-container input:focus {
+  outline: none;
+  border: 2px solid rgb(228, 130, 105);
+}
+.everything .h-container .input-container button {
+  border-style: none;
+  color: white;
+  width: 8rem;
+  font-size: 1.3rem;
+  background-color: rgb(220, 155, 138);
+  padding: 0;
+}
+.everything .h-container .input-container button:hover {
+  background-color: rgb(173, 122, 109);
+}
+.everything .h-container .message-container {
+  font-size: 2rem;
+  color: rgb(208, 20, 20);
+  text-align: center;
+  padding: 2rem 0;
+  margin: 0;
+}
+.everything .leaderboard-container {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.everything .leaderboard-container .player-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: rgb(234, 196, 187);
+  width: 100%;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.everything .leaderboard-container .player-info *:not(svg) {
+  width: 180px;
+}
+.everything .leaderboard-container .player-info .container-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.everything .leaderboard-container .player-info .container-info .date {
+  color: rgb(145, 145, 145);
+}
+.everything .leaderboard-container .player-info .buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.everything .leaderboard-container .player-info .buttons button {
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 50%;
+  height: 3.5rem;
+  width: 3.5rem;
+  cursor: pointer;
+}
+.everything .leaderboard-container .player-info .buttons button :first-of-type {
+  pointer-events: none;
+}/*# sourceMappingURL=styles.css.map */
