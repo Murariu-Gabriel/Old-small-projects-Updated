@@ -61,18 +61,20 @@ const deleteEvents = (children) => {
 const deleteElement = (e, elementsWithEvents) => {
     const parent = e.target.parentNode.parentNode
 
-    console.log("da?")
-
     deleteEvents(elementsWithEvents)
+    deleteItemFromList(parent.id)
     parent.remove()
 }
 
 
 
 const changeScore = (e, scoreCount, operation) => {
-    const scoreContainer = e.parentNode.parentNode.querySelector(".score")
+
+    const parent = e.parentNode.parentNode
+    const scoreContainer = parent.querySelector(".score")
     const score = parseInt(scoreContainer.innerText) 
 
+    
     const operators = {
         "+" : (a, b) => a + b,
         "-" : (a, b) => a - b
@@ -82,10 +84,11 @@ const changeScore = (e, scoreCount, operation) => {
     const currentScore = func(score, scoreCount)
 
     if(currentScore <= 0){
-
-        scoreContainer.innerText = 0
+      scoreContainer.innerText = 0
+      updateScore(parent.id, 0)
     } else {
        scoreContainer.innerText = currentScore
+       updateScore(parent.id, currentScore)
     }
 
     sortNodes(leaderboard, leaderboard.children)
@@ -94,13 +97,14 @@ const changeScore = (e, scoreCount, operation) => {
 
 
 
-const createElement = (firstName, lastName, country, playerScore, date) => {
+const createElement = (firstName, lastName, country, playerScore, date, id) => {
     const element = document.createElement("li")
     element.classList.add("player-info")
+    element.setAttribute("id", id)
 
     element.innerHTML = `
         <div class="container-info">
-            <span class="player-name">${firstName} ${lastName}</span>
+            <span class="player-name"> <span id="first-name">${firstName}</span> ${lastName}</span>
             <span class="date">${date}</span>
         </div>
 
@@ -144,10 +148,18 @@ inputContainer.addEventListener("submit", (e) =>{
 
         const time = getTime()
 
-        messageContainer.innerText = "" 
-        leaderboard.appendChild(createElement(first_name, last_name, country, player_score, time))
+        const id = crypto.randomUUID()
 
-        updateListItems(first_name, [last_name, country, player_score, time])
+        messageContainer.innerText = "" 
+        leaderboard.appendChild(createElement(first_name, last_name, country, player_score, time, id))
+
+        updateListItems(first_name.toLowerCase(), [
+          last_name,
+          country,
+          player_score,
+          time,
+          id
+        ])
 
         sortNodes(leaderboard, leaderboard.children)
     } else {
@@ -169,11 +181,11 @@ const sortNodes = (parent, nodes) => {
     
     const children = Array.from(nodes)
     
-    console.log(children)
+    // console.log(children)
     
     const sortedChildren = children.toSorted((a, b) => getScore(b) - getScore(a))
     
-    console.log(sortedChildren)
+    // console.log(sortedChildren)
     parent.innerHTML = ""
 
     sortedChildren.forEach((el) => parent.appendChild(el)) // 
@@ -181,19 +193,20 @@ const sortNodes = (parent, nodes) => {
 }
 
 
-
+// Functions for updating local storage
 
 const updateListItems = (item, value) => {
   const listItems = getListItems()
 
-  const [last_name, country, player_score, time] = value
+  const [last_name, country, player_score, time, id] = value
 
-    listItems[item] = {
-        name: item,
-        lastName: last_name,
-        country: country,
-        score: player_score,
-        date: time
+    listItems[id] = {
+      name: item,
+      lastName: last_name,
+      country: country,
+      score: player_score,
+      date: time,
+      id: id
     }
  
     
@@ -201,27 +214,46 @@ const updateListItems = (item, value) => {
   localStorage.setItem("list-items", stringified)
 }
 
+const deleteItemFromList = (item) => {
+    const listItems = getListItems()
 
-const loadLeadearboar = () => {
+    delete listItems[item]
+
+    const stringified = JSON.stringify(listItems)
+    localStorage.setItem("list-items", stringified)
+}
+
+const updateScore = (item, score) => {
+    const listItems = getListItems()
+
+    console.log(score)
+
+   listItems[item].score = score
+
+   console.log(listItems[item].score)
+
+    const stringified = JSON.stringify(listItems)
+    localStorage.setItem("list-items", stringified)
+}
+
+
+const loadLeaderboard = () => {
   const leaderboardItems = getListItems()
 
   for (const item in leaderboardItems) {
-    const { name, lastName, country, score, date } = leaderboardItems[item]
+    const { name, lastName, country, score, date, id } = leaderboardItems[item]
    
-    const element = createElement(name, lastName, country, score, date)
+    const element = createElement(name, lastName, country, score, date, id)
 
     leaderboard.appendChild(element)
   }
+
+  sortNodes(leaderboard, leaderboard.children)
 }
 
-loadLeadearboar()
+loadLeaderboard()
 // localStorage.clear()
 
-// Next
-
-// When the delete button is clicked we need to delete the item from local storage
-
-// When we change score the score has to be hanged in local storage also
 
 
 
