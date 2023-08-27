@@ -1,0 +1,182 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #eee;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+.real-time-country-info {
+    font-style: italic;
+    color: orange;
+    display: flex;
+    padding: 5px;
+}
+
+.sub-input2 {
+    
+    padding: 0 5px;
+}
+
+.first-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.text-info {
+    text-align: center;
+}
+
+.title {
+    color: orange;
+}
+
+.country {
+    background-color: white;
+}
+
+.text-info {
+    padding-bottom: 25px;
+}
+
+.input-container {
+    padding-bottom: 20px;
+}
+
+.input {
+    border-radius: 50px;
+    border-color: orange;
+    width: 35rem;
+    height: 2rem;
+    padding-left: 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.name ,
+.capital,
+.population1 {
+    border-radius: 50px;
+    border-style: none;
+    background-color: orange;
+    width: 9rem;
+    height: 2.5rem;
+    cursor: pointer;
+}
+
+.to-info-chart{
+    border-style: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    
+}
+
+#new-task-submit {
+    color: var(--pink);
+    font-size: 1.25rem;
+    font-weight: 700;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: 0.4s;   
+}
+
+.after-input-result {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.result-info {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.country{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    width: 200px;
+    
+}
+
+.country-name {
+    color: orange;
+    padding-bottom: 10px;
+}
+
+.language {
+    word-break: break-all;
+}
+
+.country-img {
+    width: 100px;
+}
+
+.result-info {
+    padding: 20px;
+}
+
+.buttons-for-results {
+    padding-bottom: 10px;
+}
+
+.population,
+.languages{
+    border-style: none;
+    background-color: orange;
+    width: 7rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.after-button-pressing{
+    text-align: center;
+}
+
+.country-info, .lang-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filling{
+    padding: 0 100px;
+}
+
+.footer {
+    padding: 20px 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.up {
+    border-style: none;
+    cursor: pointer;
+    color: orange;
+}

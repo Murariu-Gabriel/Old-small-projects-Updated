@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>World Countries Data</title>
+        <link rel="stylesheet" href="/style.css">
+        <script src="/script.js" defer></script>
+        <script src="/countries_data.js" ></script>
+    </head>
+    <body>
+        <div class="flex-container" id="top">
+            <header class="first-container">
+                <div class="text-info">
+                    <h1 class="title">World Countries Data</h1>
+                    <p class="info">Currently we have 250 countries</p>
+                    <p class="real-time-country-info" id="real-time-country-info"></p>
+                </div>
+                <div class="input-container">
+                    <input class="input" id="input" type="text" placeholder="Search country by name, city or language">
+                </div>
+                <div class="buttons">
+                    <button class="name" id="name">Name</button>
+                    <button class="capital" id="capital">Capital</button>
+                    <button class="sort-population" id="sort-population">Population</button>
+                    <a href="#result-info"><button class="to-info-chart"><svg stroke="none" fill="orange" stroke-width="0" viewBox="0 0 1024 1024" height="2.5rem" width="2.5rem" xmlns="http://www.w3.org/2000/svg"><path d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm-600-80h56c4.4 0 8-3.6 8-8V560c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v144c0 4.4 3.6 8 8 8zm152 0h56c4.4 0 8-3.6 8-8V384c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v320c0 4.4 3.6 8 8 8zm152 0h56c4.4 0 8-3.6 8-8V462c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v242c0 4.4 3.6 8 8 8zm152 0h56c4.4 0 8-3.6 8-8V304c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v400c0 4.4 3.6 8 8 8z"></path></svg></button></a> 
+                </div>
+            </header>
+            <section class="after-input-result" id="after-input-result">
+                
+            
+            </section>
+            <section class="result-info" id="result-info">
+                <div class="buttons-for-results">
+                    <button class="population" id="population">Population</button>
+                    <button class="languages" id="languages">languages</button>
+                    <p class="after-button-pressing" id="after-button-pressing">World population</p>
+                </div>
+                <div class="stats-graphic" id="stats-graphic">
+            
+                    <!-- <div class="country-info"><p class="country-display">Country</p> <p class="filling"></p> <p class="population-number">123123123123123</p></div>
+                    <div class="country-info"><p class="country-display">Country</p> <p class="filling"></p> <p class="population-number">123123123123123</p></div>
+                    <div class="country-info"><p class="country-display">Country</p> <p class="filling"></p> <p class="population-number">123123123123123</p></div> -->
+                </div>
+            </section>
+            <footer class="footer">
+                <p class="water-mark">Developed by ME</p>
+                <a href="#top"><button class="up"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="2rem" width="2rem" xmlns="http://www.w3.org/2000/svg"><path d="M868 545.5L536.1 163a31.96 31.96 0 0 0-48.3 0L156 545.5a7.97 7.97 0 0 0 6 13.2h81c4.6 0 9-2 12.1-5.5L474 300.9V864c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V300.9l218.9 252.3c3 3.5 7.4 5.5 12.1 5.5h81c6.8 0 10.5-8 6-13.2z"></path></svg></button></a>
+            </footer>
+        </div>
+    </body>
+</html>
