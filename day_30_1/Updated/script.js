@@ -11,6 +11,13 @@ const languagesBtn = document.getElementById("languages")
 const afterBtnPressing = document.getElementById("after-button-pressing")
 
 
+const list = document.getElementById("list")
+const secondList = document.querySelector("#secondList")
+const bars = document.getElementById("bars")
+
+
+// This closure is used for storing and changing the current items generated for search to be used
+
 const useState = (initialValue) => {
   let state = initialValue
 
@@ -26,60 +33,81 @@ const useState = (initialValue) => {
 }
 
 
-// Here you need to check a recent updated project that has updated code for this part
-const mostSpokenLanguage = (array) => {
-const languages = []
-for (const el of array) {
-    languages.push(el.languages)
+const sortBy = (array, value) => {
+  const sorted = array.toSorted((a, b) => {
+    return b[value] - a[value]
+  })
+
+  return sorted
 }
 
-const allLanguages = []
-for (const lang of languages) {
-    for (const lang2 of lang) {
-    allLanguages.push(lang2)
-    }
+// here list element needs to also show world population and languages
+
+const listElement = (element, listClass) => {
+  const listEl = document.createElement("li")
+
+  const ifAddedClass = listClass ? listClass : "listEl"
+  const noContent = listClass ? "" : element
+
+  listEl.classList.add(ifAddedClass)
+  listEl.innerHTML = `<span>${noContent}</span>`
+
+  const procent = (element / 8015827856) * 100
+  const finalProcent = procent.toString().slice(0, 4)
+  const stringNum = element.toString()
+
+  const ifNumberToHigh =
+    stringNum.length > 2 ? `${finalProcent}%` : `${element}%`
+
+  listEl.style.width = listClass ? ifNumberToHigh : "0%"
+
+  return listEl
 }
 
-const allLanguagesSet = new Set(allLanguages)
-const counts = []
-
-for (const l of allLanguagesSet) {
-    const filteredLang = allLanguages.filter((lng) => lng === l)
-    counts.push({ lang: l, count: filteredLang.length })
+const deleteContentFromLists = () => {
+  list.innerHTML = ""
+  secondList.innerHTML = ""
+  bars.innerHTML = ""
 }
 
-const sortedLangs = counts
-    .sort((a, b) => {
-    return b.count - a.count
-    })
-    .slice(0, 10)
+const addCertainNumberOfElements = (array, number, element, count) => {
 
-return sortedLangs
+    deleteContentFromLists()
+
+  const sortedAndSlicedCountries = sortBy(array, element).slice(0, number)
+
+  sortedAndSlicedCountries.forEach((country) => {
+    const { [count]: fistElement, [element]: secondElement } = country
+
+    list.appendChild(listElement(fistElement))
+    secondList.appendChild(listElement(secondElement))
+    bars.appendChild(listElement(secondElement, "bar"))
+  })
 }
 
-const loadLangs = (array) => {
-afterBtnPressing.innerHTML = "Most spoken languages"
-statsGraphic.innerHTML = ""
+const mostSpokenLanguages = (array) => {
+  const langs = array.map((element) => element.languages)
 
-for (const { lang, count } of array) {
-    const div = document.createElement("div")
-    div.classList.add("lang-info")
-    div.innerHTML = `<p class="lang-display">${lang}</p> 
-        <p class="filling"></p> <p class="lang-number">${count}</p>`
+  const allLangs = langs.reduce((accumulator, currentValue) => {
+    return accumulator.concat(currentValue)
+  }, [])
 
-    statsGraphic.appendChild(div)
-}
+  const allLangSet = new Set(allLangs)
+
+  const counts = [...allLangSet].reduce((accumulator, language) => {
+    const filteredLang = allLangs.filter((lng) => lng === language)
+    return accumulator.concat({ count: filteredLang.length, lang: language })
+  }, [])
+
+  const sortedLangs = sortBy(counts, "count")
+
+  return sortedLangs
 }
 
-const popSorter = (array) => {
-  const copy = [...array]
-  const sortedCopy = copy
-    .sort((a, b) => {
-      return b.population - a.population
-    })
-    .slice(0, 10)
-  return sortedCopy
-}
+
+
+// I need to check if the buttons work correctly
+
 
 
 const [countries, setCountries] = useState(countries_data)
@@ -92,9 +120,10 @@ input.addEventListener('keyup', (e) => {
         return country.name.toUpperCase().includes(search) 
     })
 
+    setCountries(filteredCountries)
    loadingCountries(filteredCountries)
-   loadGraph(popSorter(filteredCountries))
-   setCountries(filteredCountries)
+
+   addCertainNumberOfElements(countries(), 10, "population", "name")
 
    if(e.target.value.length != 0){
     realTimeInfo.innerHTML = ""
@@ -135,14 +164,27 @@ sortPopulation.addEventListener("click", ()=>{
     loadingCountries(countries())
 }) 
 
+
+// After search afterBtnPressing needs to contain world countries before that it should contain top 10 most populated countries
+
 populationBtn.addEventListener("click", () => {
-    loadGraph(popSorter(countries()))
+    deleteContentFromLists()
+
+    addCertainNumberOfElements(countries(), 10, "population", "name")
+    afterBtnPressing.innerHTML = ""
 })
 
 
 
 languagesBtn.addEventListener("click", () => {
-    loadLangs(mostSpokenLanguage(countries()))
+    deleteContentFromLists()
+
+    addCertainNumberOfElements(
+      mostSpokenLanguages(countries()),
+      10,
+      "count",
+      "lang"
+    )
 })
 
 
@@ -164,26 +206,9 @@ function loadingCountries(array) {
 }
 
 
-// Here you need to check a recent updated project that has updated code for this part
-{/* <div class="country-info"><p class="country-display">Country</p> 
-<p class="filling"></p> <p class="population-number">123123123123123</p></div> */}
-function loadGraph(array){
-    afterBtnPressing.innerHTML = "Most Populated countries"
-    statsGraphic.innerHTML = ""
 
-    for(const country of array){
-        const div = document.createElement("div")
-        div.classList.add("country-info")
-        div.innerHTML = `<p class="country-display">${country.name}</p> 
-        <p class="filling"></p> <p class="population-number">${country.population}</p>`
-
-        statsGraphic.appendChild(div)
-    }
-}
-
-
+addCertainNumberOfElements(countries_data, 10, "population", "name")
 loadingCountries(countries_data)
-loadGraph(popSorter(countries_data))
 
 
 

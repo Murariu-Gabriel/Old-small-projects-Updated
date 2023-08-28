@@ -2114,7 +2114,7 @@ const countries_data = [
 			"area": 238391
 	},
 	{
-			"name": "Russian Federation",
+			"name": "Russia",
 			"capital": "Moscow",
 			"languages": [
 					"Russian"
@@ -2736,7 +2736,7 @@ const countries_data = [
 			"area": 242900
 	},
 	{
-			"name": "United States of America",
+			"name": "USA",
 			"capital": "Washington, D.C.",
 			"languages": [
 					"English"
