@@ -1,0 +1,184 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #eee;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px;
+    margin: 0 auto;
+
+    .first-container {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+
+        .text-info {
+            text-align: center;
+            padding-bottom: 25px;
+
+            .title {
+                color: orange;
+            }
+
+            .real-time-country-info {
+                font-style: italic;
+                color: orange;
+                display: flex;
+                padding: 5px;
+            }
+        }
+
+        .input-container {
+            padding-bottom: 20px;
+
+            input {
+                border-radius: 50px;
+                border-color: orange;
+                width: 35rem;
+                height: 2rem;
+                padding-left: 15px;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 5px;
+
+            button{
+                border-radius: 50px;
+                border-style: none;
+                background-color: orange;
+                width: 9rem;
+                height: 2.5rem;
+                cursor: pointer;
+            }
+
+            .to-info-chart{
+                border-style: none;
+                background: none;
+                cursor: pointer;
+
+                svg{
+                    pointer-events: none;
+                }
+                
+            }
+        }
+
+    }   
+
+    .after-input-result {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 10px 0;
+
+        .country{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            width: 200px;
+            background-color: white;
+
+            .country-name {
+                color: orange;
+                padding: 10px;
+            }
+
+            .language {
+                word-break: break-all;
+            }
+
+            .country-img {
+                width: 100px;
+            }
+        
+        }
+    }
+
+    .result-info {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+
+        .buttons-for-results {
+            padding-bottom: 10px;
+
+            .after-button-pressing{
+                text-align: center;
+            }
+
+            button{
+                border-style: none;
+                background-color: orange;
+                width: 7rem;
+                height: 2rem;
+                cursor: pointer;
+            }
+        }
+
+        .stats-graphic {
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            box-shadow: 0px 3px 8px 2px rgba(128, 128, 128, 0.83);
+
+            .graph-wrapper {
+                display: flex;
+                gap: 1.5rem;
+
+                ul {
+                    align-items: center;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        display: flex;
+                        text-align: start;
+                        margin-top: 0.5rem;
+                        height: 25px;
+                    }
+                }
+
+                .bars {
+                   width: 300px;
+
+                   .bar {
+                        background-color: rgb(241, 162, 14);
+                    }  
+                }
+            }
+        }
+    }
+
+    .footer {
+        padding: 20px 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .up {
+            border-style: none;
+            cursor: pointer;
+            color: orange;
+        }
+    }
+
+}

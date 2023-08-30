@@ -158,14 +158,14 @@ body {
     text-align: center;
 }
 
-.country-info, .lang-info{
+/* .country-info, .lang-info{
     display: flex;
     justify-content: space-between;
 }
 
 .filling{
     padding: 0 100px;
-}
+} */
 
 .footer {
     padding: 20px 50px;

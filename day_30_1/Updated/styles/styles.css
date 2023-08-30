@@ -1,0 +1,153 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #eee;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  margin: 0 auto;
+}
+.flex-container .first-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.flex-container .first-container .text-info {
+  text-align: center;
+  padding-bottom: 25px;
+}
+.flex-container .first-container .text-info .title {
+  color: orange;
+}
+.flex-container .first-container .text-info .real-time-country-info {
+  font-style: italic;
+  color: orange;
+  display: flex;
+  padding: 5px;
+}
+.flex-container .first-container .input-container {
+  padding-bottom: 20px;
+}
+.flex-container .first-container .input-container input {
+  border-radius: 50px;
+  border-color: orange;
+  width: 35rem;
+  height: 2rem;
+  padding-left: 15px;
+}
+.flex-container .first-container .buttons {
+  display: flex;
+  gap: 5px;
+}
+.flex-container .first-container .buttons button {
+  border-radius: 50px;
+  border-style: none;
+  background-color: orange;
+  width: 9rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+.flex-container .first-container .buttons .to-info-chart {
+  border-style: none;
+  background: none;
+  cursor: pointer;
+}
+.flex-container .first-container .buttons .to-info-chart svg {
+  pointer-events: none;
+}
+.flex-container .after-input-result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+.flex-container .after-input-result .country {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  height: auto;
+  margin-bottom: 0.5rem;
+  width: 200px;
+  background-color: white;
+}
+.flex-container .after-input-result .country .country-name {
+  color: orange;
+  padding: 10px;
+}
+.flex-container .after-input-result .country .language {
+  word-break: break-all;
+}
+.flex-container .after-input-result .country .country-img {
+  width: 100px;
+}
+.flex-container .result-info {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.flex-container .result-info .buttons-for-results {
+  padding-bottom: 10px;
+}
+.flex-container .result-info .buttons-for-results .after-button-pressing {
+  text-align: center;
+}
+.flex-container .result-info .buttons-for-results button {
+  border-style: none;
+  background-color: orange;
+  width: 7rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.flex-container .result-info .stats-graphic {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  box-shadow: 0px 3px 8px 2px rgba(128, 128, 128, 0.83);
+}
+.flex-container .result-info .stats-graphic .graph-wrapper {
+  display: flex;
+  gap: 1.5rem;
+}
+.flex-container .result-info .stats-graphic .graph-wrapper ul {
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.flex-container .result-info .stats-graphic .graph-wrapper ul li {
+  display: flex;
+  text-align: start;
+  margin-top: 0.5rem;
+  height: 25px;
+}
+.flex-container .result-info .stats-graphic .graph-wrapper .bars {
+  width: 300px;
+}
+.flex-container .result-info .stats-graphic .graph-wrapper .bars .bar {
+  background-color: rgb(241, 162, 14);
+}
+.flex-container .footer {
+  padding: 20px 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-container .footer .up {
+  border-style: none;
+  cursor: pointer;
+  color: orange;
+}/*# sourceMappingURL=styles.css.map */
