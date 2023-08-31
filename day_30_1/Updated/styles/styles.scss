@@ -33,7 +33,8 @@ body {
                 font-style: italic;
                 color: orange;
                 display: flex;
-                padding: 5px;
+                gap: 0.5rem;
+                padding: 0.5rem;
             }
         }
 
@@ -63,6 +64,7 @@ body {
             }
 
             .to-info-chart{
+                width: 10%;
                 border-style: none;
                 background: none;
                 cursor: pointer;
@@ -121,6 +123,7 @@ body {
 
             .after-button-pressing{
                 text-align: center;
+                padding: 1rem;
             }
 
             button{
@@ -147,6 +150,13 @@ body {
                     list-style: none;
                     padding: 0;
                     margin: 0;
+                    width: 33%;
+                    //     width: 100%;
+
+
+                    // &:not(.bars){
+                    //     width: 100%;
+                    // }
 
                     li {
                         display: flex;

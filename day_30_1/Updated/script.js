@@ -59,7 +59,7 @@ const listElement = (element, listClass) => {
   const ifNumberToHigh =
     stringNum.length > 2 ? `${finalProcent}%` : `${element}%`
 
-  listEl.style.width = listClass ? ifNumberToHigh : "0%"
+  listEl.style.width = listClass ? ifNumberToHigh : ""
 
   return listEl
 }
@@ -75,6 +75,12 @@ const addCertainNumberOfElements = (array, number, element, count) => {
     deleteContentFromLists()
 
   const sortedAndSlicedCountries = sortBy(array, element).slice(0, number)
+
+  if(element === "population"){
+    list.appendChild(listElement("World"))
+    secondList.appendChild(listElement(8015827856))
+    bars.appendChild(listElement(8015827856, "bar"))
+  }
 
   sortedAndSlicedCountries.forEach((country) => {
     const { [count]: fistElement, [element]: secondElement } = country
@@ -106,19 +112,32 @@ const mostSpokenLanguages = (array) => {
 
 
 
-// I need to check if the buttons work correctly
-
-
 
 const [countries, setCountries] = useState(countries_data)
 
 
-input.addEventListener('keyup', (e) => {
-    const search = e.target.value.toUpperCase();
+const checkForLanguages = (search) => {
 
-    const filteredCountries = countries_data.filter(country => {
-        return country.name.toUpperCase().includes(search) 
-    })
+    const check = element.some(el => el.toLowerCase().includes(search))
+
+    return check
+
+}
+
+input.addEventListener('keyup', (e) => {
+    const search = e.target.value.toLowerCase();
+
+
+    const filteredCountries = countries_data.filter(
+      (country) => 
+  
+        country.name.toLowerCase().includes(search) ||
+        country.capital?.toLowerCase().includes(search) || 
+        country.languages.some(el => el.toLowerCase().includes(search))
+        
+    )
+
+    console.log(filteredCountries)
 
     setCountries(filteredCountries)
    loadingCountries(filteredCountries)
@@ -127,7 +146,7 @@ input.addEventListener('keyup', (e) => {
 
    if(e.target.value.length != 0){
     realTimeInfo.innerHTML = ""
-    realTimeInfo.innerHTML = `<p class="sub-input2">${filteredCountries.length}</p> Countries satisfied with the search criteria`
+    realTimeInfo.innerHTML = `<p class="sub-input2">${filteredCountries.length} </p>   Countries satisfied with the search criteria`
    } else {
     realTimeInfo.innerHTML = ""
     setCountries(countries_data)
@@ -171,7 +190,7 @@ populationBtn.addEventListener("click", () => {
     deleteContentFromLists()
 
     addCertainNumberOfElements(countries(), 10, "population", "name")
-    afterBtnPressing.innerHTML = ""
+    afterBtnPressing.innerHTML = "Top 10 most populated countries"
 })
 
 
@@ -185,6 +204,7 @@ languagesBtn.addEventListener("click", () => {
       "count",
       "lang"
     )
+    afterBtnPressing.innerHTML = "Top 10 most spoken languages"
 })
 
 

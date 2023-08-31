@@ -32,7 +32,8 @@ body {
   font-style: italic;
   color: orange;
   display: flex;
-  padding: 5px;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 .flex-container .first-container .input-container {
   padding-bottom: 20px;
@@ -57,6 +58,7 @@ body {
   cursor: pointer;
 }
 .flex-container .first-container .buttons .to-info-chart {
+  width: 10%;
   border-style: none;
   background: none;
   cursor: pointer;
@@ -103,6 +105,7 @@ body {
 }
 .flex-container .result-info .buttons-for-results .after-button-pressing {
   text-align: center;
+  padding: 1rem;
 }
 .flex-container .result-info .buttons-for-results button {
   border-style: none;
@@ -126,6 +129,7 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 33%;
 }
 .flex-container .result-info .stats-graphic .graph-wrapper ul li {
   display: flex;
