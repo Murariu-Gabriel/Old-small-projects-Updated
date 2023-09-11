@@ -184,7 +184,7 @@ sortPopulation.addEventListener("click", ()=>{
 }) 
 
 
-// After search afterBtnPressing needs to contain world countries before that it should contain top 10 most populated countries
+
 
 populationBtn.addEventListener("click", () => {
     deleteContentFromLists()
@@ -218,7 +218,7 @@ function loadingCountries(array) {
         <img class="country-img" src="${country.flag}">
         <p class="country-name" id="country-name">${country.name}</p>
         <p class="country-capital" id="country-capital">Capital: ${country.capital}</p>
-        <p class="language" id="language">Language: ${country.languages}</p>
+        <p class="language" id="language">Language: ${country.languages.join(", ")}</p>
         <p class="country-population" id="country-population">Population: ${country.population}</p>
         `
         afterInputResult.appendChild(div)
